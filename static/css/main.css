@@ -22,6 +22,7 @@
   border-radius: 50%;
   object-fit: cover;
 }
+ /* ###################################*/
 
   /* Estilos para el contenedor principal */
 .articles-container {
@@ -31,31 +32,31 @@
   min-height: 100vh;
   justify-content: space-between;
 }
+ /* ###################################*/
 
 /* Estilos para el contenedor de la paginación */
 .pagination-container {
   margin-top: 20px;
 }
+ /* ###################################*/
 
 /* Estilos para imagen de acerca-de */
-  .hero-image {
-    height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+.hero-image {
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+ /* ###################################*/
 
 
-/*  */
-
-/* Estilos personalizados para los botones */
-
-/* Efecto subrayado progresivo al pasar el cursor */
+/* Efecto subrayado progresivo al pasar el cursor, por las secciones del nav */
 .underline-hover {
   position: relative;
   text-decoration: none;
   color: inherit;
 }
+ 
 
 .underline-hover::after {
   content: '';
@@ -78,6 +79,7 @@
   display: flex;
   justify-content: center;
 }
+/* ###################################*/
 
 /*Profile colab*/
 
@@ -98,6 +100,19 @@
 }
 
 .card-body-profile {
-  background-color: #c9d7b3; /* Color de fondo para el texto */
+  background-color: #c9d7b3;
   padding: 10px;
 }
+/* ###################################*/
+
+/*Centrar todos los articulos*/
+.center-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-project {
+  margin: 10px;
+}
+/*################################*/

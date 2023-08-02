@@ -79,8 +79,26 @@
   justify-content: center;
 }
 
+/*Profile colab*/
 
+.username {
+  font-size: 25px;
+  font-weight: bold;
+  margin: inherit;
+  padding: 3px;
+}
 
+.biography {
+  text-align: center;
+}
+.user-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-
+.card-body-profile {
+  background-color: #c9d7b3; /* Color de fondo para el texto */
+  padding: 10px;
+}
 

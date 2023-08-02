@@ -47,22 +47,23 @@ body, html {
 }
 
 
-.programas{
-    background-color: antiquewhite;
+
+
+
+ .card {
     margin: 10px;
+    padding: 16px;
+    border-radius: 10px;
+    border-color: #046716;
+    box-shadow: 10px 8px 10px 5px gray;
+    background-color: #d0ffdf;
 }
 
 
 
-  .card {
-    margin: 10px;
-    padding: 16px;
-    border-radius: 10px;
-    display: flex;
-    height: 100%;
-  }
-  
-  .card-img-top{
+
+
+  .card img{
     height: 70px;
     width: 70px;
     border-radius: 10px;
@@ -70,23 +71,24 @@ body, html {
     align-items: center;
     justify-content: center;
     background-position: cover;
+    border-color: none;
   }
-  
 
-  
-  .card-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+
   
   .redes{
     display: flex;
     justify-content: space-around;
     margin: 5px;
   }
-  
-  
+
+.noticias{
+    background-color: #d0ffdf;
+}
+
+
 .noticias img{
-    height: 10px;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
 }

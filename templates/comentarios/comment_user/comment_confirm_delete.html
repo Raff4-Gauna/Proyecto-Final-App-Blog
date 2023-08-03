@@ -1,17 +1,39 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="accordion accordion-flush bg-transparent" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header text-center fst-italic" id="flush-headingOne">
+        <button class="accordion-button collapsed w-100" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="color: navy;">
+        <b>"¡Este comentario merece ser guardado! Conservemos esta valiosa contribución en nuestro espacio de conversación."</b>
+        </button>
+      </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body fst-italic">
+          ¡Apreciamos tus ideas! Queremos conocer tu opinión sobre el medio ambiente y cómo podemos mejorarlo juntos.
+          Comparte tus reflexiones, haz preguntas y únete a nuestra comunidad comprometida con la protección del medio ambiente. Tu participación marca la diferencia y nos ayuda a construir un futuro sostenible para todos. 
+            <b>  ¡Únete a la causa y se parte del cambio positivo! </b>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<br>
+
 {% if user.is_authenticated %}
-  <h1>Eliminar comentario</h1>
-  <p>¿Estás seguro de que deseas eliminar este comentario?</p>
-  <form method="post">
+  <h1 class="text-center">Eliminar comentario</h1>
+  <p class="text-center">¿Estás seguro de que deseas eliminar este comentario?</p>
+  <form method="post" class="text-center">
     {% csrf_token %}
     <!-- Agregar el atributo "method" y "action" al formulario -->
     <button type="submit" class="btn btn-danger">Eliminar</button>
     <a href="{% url 'articulos:detail_article' post_id=object.article.id %}" class="btn btn-secondary">Cancelar</a>
   </form>
 {% else %}
-  <p>Esta página solo está disponible para usuarios autenticados. Por favor, <a href="{% url 'usuarios:login_user' %}">inicia sesión</a> o <a href="{% url 'usuarios:signup_user' %}">regístrate</a>.</p>
+  <p class="text-center">Esta página solo está disponible para usuarios autenticados. Por favor, <a href="{% url 'usuarios:login_user' %}">inicia sesión</a> o <a href="{% url 'usuarios:signup_user' %}">regístrate</a>.</p>
 {% endif %}
 {% endblock %}
-

@@ -5,6 +5,14 @@
   --bs-dark-rgb: -67, 20, 38;
 }
 
+body{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+footer{
+  margin-top: auto;
+}
 
 
 
@@ -120,3 +128,7 @@
   margin: 10px;
 }
 /*################################*/
+
+
+
+

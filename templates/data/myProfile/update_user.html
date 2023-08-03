@@ -1,12 +1,24 @@
 {% extends 'layout.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-  <h2>Actualizar datos de usuario</h2>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar cambios</button>
-  </form>
-  
-  <a href="{% url 'usuarios:change_password'%}">Cambiar contraseña</a>
+<main class="container">
+  <h1  class=" mb-4 text-center fs-6 text-decoration-underline">Actualiza tus datos</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy}}
+        <div class="d-grid mt-4">
+          <button class="btn btn-primary" type="submit">Guardar cambios</button>
+        </div>
+        <div class="d-grid mt-4">
+            <a href="{% url 'usuarios:change_password'%}"  class="btn btn-outline-secondary"> <b> Cambiar contraseña </b> </a> 
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
 {% endblock %}
+
+

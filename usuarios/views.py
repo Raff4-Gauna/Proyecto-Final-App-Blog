@@ -111,3 +111,4 @@ class AuthorDetailView(DetailView):
     model = User
     template_name = "data/data_user/detail_user/author_detail.html"
     context_object_name = "author"
+

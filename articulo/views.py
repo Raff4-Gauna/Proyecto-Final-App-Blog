@@ -284,6 +284,13 @@ class ArtUpdateView(LoginRequiredMixin, UpdateView):
         response = super().form_valid(form)
         return response
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        post_id = self.kwargs.get('pk')
+        article = get_object_or_404(Articles, pk=post_id)
+        context['article'] = article
+        return context
+
     def get_success_url(self):
         pk = self.kwargs['pk']
         return reverse_lazy('articulos:detail_article', kwargs={'post_id': pk})

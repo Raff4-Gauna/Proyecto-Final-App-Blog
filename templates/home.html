@@ -119,7 +119,7 @@
       <div class="card bg-dark text-white card-project" style="width: 18rem;">
         <img src="{{article.image.url }}" class="card-img-top" />
         <div class="card-body">
-          <h2 class="fw-bold text-success fs-5">Título: {{ article.title }}</h2>
+          <h2 class="fw-bold text-success fs-5">{{ article.title }}</h2>
           <p>Escritor: <a href="{% url 'usuarios:author_detail' article.author.id %}" class="btn btn-outline-primary">{{ article.author.username }}</a></p>
           <p>{{ article.content|striptags |truncatechars:100 }}</p>
           {% if user.is_authenticated %}

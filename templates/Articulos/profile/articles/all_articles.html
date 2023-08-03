@@ -3,7 +3,7 @@
 {% block content %}
 
 
-<!-- Formulario de búsqueda -->
+<!-- Seccion de filtros y búsqueda -->
 <form class="d-flex flex-wrap justify-content-center align-items-center my-3" method="get" action="{% url 'articulos:all_articles' %}">
     {% csrf_token %}
     <div class="input-group" style="max-width: 400px;"> <!-- Puedes ajustar el valor de max-width según tus necesidades -->
@@ -35,6 +35,8 @@
         <a class="btn btn-sm btn-secondary btn-rounded" href="{% url 'articulos:all_articles' %}?sort_by=alpha_desc">Z-A</a>
     </div>
 </div>
+
+<!-- ############################################################################### -->
 
 
 
@@ -69,12 +71,39 @@
                     {% else %}
                             <a href="{% url 'articulos:detail_article' article.id %}" class="boton-articulo btn-success">Leer</a>
                     {% endif %}    
+<!-- Seccion del listado de articulos -->
+<div class="center-content">
+    <h3 class="fw-bold text-center">Listas de Artículos</h3>
+    <div class="row g-4 justify-content-center"> <!-- Eliminamos row-cols-md-3 y agregamos justify-content-center -->
+        {% for article in page %}
+        <div class="col mb-3"> <!-- Agregamos mb-3 para separar las cartas -->
+            <div class="card h-100 bg-dark text-white card-project" style="width: 18rem;">
+                <img src="{{ article.image.url }}" class="card-img-top" alt="{{ article.title }}" style="max-height: 150px; object-fit: cover;">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted text-center">{{ article.date_published|date:'M d Y' }}</h6>
+                    <h2 class="fw-bold text-success fs-5 text-center">Título: {{ article.title }}</h2>
+                    <p class="text-center">Escritor: <a href="{% url 'usuarios:author_detail' article.author.id %}" class="btn btn-outline-primary">{{ article.author.username }}</a></p>
+                    <p class="text-white card-text text-center">{{ article.content|striptags|truncatechars:100 }}</p>
+                    {% if user.is_authenticated %}
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <a href="{% url 'articulos:detail_article' article.id %}" class="btn btn-success">Leer</a>
+                        {% if user.is_colaborador %}
+                        <a href="{% url 'articulos:update_article' article.id %}" class="btn btn-warning ms-2">Editar</a>
+                        <a href="{% url 'articulos:delete_article' article.id %}" class="btn btn-danger ms-2">Eliminar</a>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <a href="{% url 'articulos:detail_article' article.id %}" class="btn btn-success">Leer</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
+<!-- ############################################################################### -->
+
+<!-- Mostrar enlaces de paginación -->
 
 
  <!--<div class="container mt-4 articles-container">
@@ -94,6 +123,7 @@
 
 
     <!-- Mostrar enlaces de paginación -->
+<div class="container mt-4 articles-container">
     <div class="pagination-container">
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
@@ -112,7 +142,7 @@
         </nav>
     </div>
 </div>
-
+<!-- ############################################################################### -->
 
 {% endblock %}
 

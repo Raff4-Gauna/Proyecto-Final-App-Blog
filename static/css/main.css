@@ -5,6 +5,9 @@
   --bs-dark-rgb: -67, 20, 38;
 }
 
+
+
+
 .color-body {
   background-color: var(--primary);
 }
@@ -101,4 +104,3 @@
   background-color: #c9d7b3; /* Color de fondo para el texto */
   padding: 10px;
 }
-

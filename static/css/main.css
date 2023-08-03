@@ -5,6 +5,9 @@
   --bs-dark-rgb: -67, 20, 38;
 }
 
+
+
+
 .color-body {
   background-color: var(--primary);
 }
@@ -103,6 +106,7 @@
   background-color: #c9d7b3;
   padding: 10px;
 }
+
 /* ###################################*/
 
 /*Centrar todos los articulos*/
@@ -116,4 +120,3 @@
   margin: 10px;
 }
 /*################################*/
-

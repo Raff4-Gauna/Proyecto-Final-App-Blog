@@ -19,7 +19,7 @@
             {% endfor %}
         </select>
         <!-- Filtro por Autor -->
-        <select name="author" class="form-select me-2">
+        <select name="author" class="author form-select me-2">
             <option value="" selected>Autor</option>
             {% for author in authors %}
                 <option value="{{ author.id }}">{{ author.username }}</option>
@@ -41,6 +41,38 @@
 
 
 
+
+
+
+<div class="text-center">
+    <h3 class="text-decoration-underline" class="font-monospace" ></h3>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for article in page %}
+        <div class="col">
+            <!-- Agregar un estilo de fondo a la tarjeta -->
+            <div class="tarjeta-articulo  bg-secondary" >
+                <img src="{{ article.image.url }}" class="card-img-top" alt="{{ article.title }}" >
+                <div class="tarjeta-articulo-body">
+                    <h6 class=" ">{{ article.date_published|date:'M d Y' }}</h6>
+                    <h5 class="">{{ article.title }}</h5>
+                    {% if user.is_authenticated %}
+                    <p>Author: {{ article.author.username }}</p>
+                    {% endif %}
+                    <h5 class="">{{ article.category }}</h5>
+                    <p class="">{{ article.content|striptags|truncatechars:100 }}</p>
+                    {% if user.is_authenticated %}
+                        <div class="btn-group" role="group" >
+                            <a href="{% url 'articulos:detail_article' article.id %}" class="boton-articulo btn btn-success">Leer</a>
+                            {% if user.is_colaborador %}
+                            <a href="{% url 'articulos:update_article' article.id %}" class="boton-articulo btn btn-warning ms-2">Editar</a>
+                            <a href="{% url 'articulos:delete_article' article.id %}" class="boton-articulo btn btn-danger ms-2">Eliminar</a>
+                            {% endif %}
+                        </div>
+                    {% else %}
+                            <a href="{% url 'articulos:detail_article' article.id %}" class="boton-articulo btn-success">Leer</a>
+                    {% endif %}
+                    {% endfor %}
+                </div>
 <!-- Seccion del listado de articulos -->
 <div class="center-content">
     <h3 class="fw-bold text-center">Listas de Artículos</h3>
@@ -75,6 +107,8 @@
 
 <!-- Mostrar enlaces de paginación -->
 
+
+    <!-- Mostrar enlaces de paginación -->
 <div class="container mt-4 articles-container">
     <div class="pagination-container">
         <nav aria-label="Page navigation example">

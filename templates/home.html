@@ -11,12 +11,11 @@
     </div>
     <!-- Text column -->
     <div class="col-md-6">
-      <p class="fw-bolder">Bolder weight text (relative to the parent element).</p>
+      <h1>Bienvenidxs al blog de la red de salud Ramon Carrillo</h1>
       <div class="text-nowrap bd-highlight" style="width: 8rem;">
-        This text should overflow the parent.
       </div>
       <p class="fw-lighter">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac turpis vel elit tincidunt consectetur vel eget sem. Ut id libero mauris. Duis auctor mauris sit amet justo congue, at malesuada mi posuere. Fusce a dapibus nulla. Proin malesuada tincidunt augue, in laoreet nisi lacinia et. Proin ullamcorper eleifend dui, et volutpat magna euismod eget. Sed nec velit eu mauris varius facilisis eget non felis.
+        En nombre de todo nuestro equipo, queremos darles una cálida bienvenida. Estamos emocionados de contar con cada uno de ustedes en esta comunidad dedicada al bienestar y la salud.
       </p>
       <a href="{% url 'usuarios:login_user' %}" type="button" class="btn btn-outline-info btn-lg">Iniciar sesión</a>
     </div>
@@ -29,9 +28,9 @@
   <div class="row align-items-center">
     <!-- Text column -->
     <div class="col-md-6">
-      <p class="fw-bolder">Bolder weight text (relative to the parent element).</p>
+      <h1>Registrate para iniciar sesion</h1>
       <p class="fw-lighter">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac turpis vel elit tincidunt consectetur vel eget sem. Ut id libero mauris. Duis auctor mauris sit amet justo congue, at malesuada mi posuere. Fusce a dapibus nulla. Proin malesuada tincidunt augue, in laoreet nisi lacinia et. Proin ullamcorper eleifend dui, et volutpat magna euismod eget. Sed nec velit eu mauris varius facilisis eget non felis.
+        Como usuario registrado, vas a poder: comentar y dar like a nuestros articulos, ademas podes sumarte y ser colaborador publicando articulos. ¡Escribinos! 
       </p>
     </div>
     <!-- Image column -->
@@ -43,30 +42,28 @@
 <hr style="height: 10px; background-color: #dc3545; border-radius: 1rem; margin: 3rem 0;">
 
 
-
-
-  
+  <h3 class="text-decoration-underline text-center" class="font-monospace" >Articulos recientes </h3>
   <div class="row my-4 text-center">
     {% for article in articles %}
     <div class="col-md-4 p-4">
-      <div class="card bg-dark text-white card-project" style="width: 18rem;">
+      <div class="tarjeta-articulo bg-secondary" >
         <img src="{{article.image.url }}" class="card-img-top" />
-        <div class="card-body">
-          <h2 class="fw-bold text-success fs-5">Título: {{ article.title }}</h2>
-          <p>Escritor: <a href="{% url 'usuarios:author_detail' article.author.id %}" class="btn btn-outline-primary">{{ article.author.username }}</a></p>
+        <div class="tarjeta-articulo-body">
+          <h2 class="fs-5">{{ article.title }}</h2>
+          <p>Autor: <a href="{% url 'usuarios:author_detail' article.author.id %}" class="btn btn-outline-primary">{{ article.author.username }}</a></p>
           <p>{{ article.content|striptags |truncatechars:100 }}</p>
           {% if user.is_authenticated %}
           <!-- Mostrar enlaces para usuarios autenticados -->
-          <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            <a href="{% url 'articulos:detail_article' article.id %}" class="btn btn-success">Leer</a>
+          <div class="btn-group" role="group" >
+            <a href="{% url 'articulos:detail_article' article.id %}" class="boton-articulo btn btn-success">Leer</a>
             {% if user.is_colaborador %}
-            <a href="{% url 'articulos:update_article' article.id %}" class="btn btn-warning ms-2">Editar</a>
-            <a href="{% url 'articulos:delete_article' article.id %}" class="btn btn-danger ms-2">Eliminar</a>
+            <a href="{% url 'articulos:update_article' article.id %}" class="boton-articulo btn btn-warning ms-2">Editar</a>
+            <a href="{% url 'articulos:delete_article' article.id %}" class="boton-articulo btn btn-danger ms-2">Eliminar</a>
             {% endif %}
           </div>
           {% else %}
           <!-- Mostrar enlace para usuarios no autenticados -->
-          <a href="{% url 'articulos:detail_article' article.id %}" class="btn btn-success">Leer</a>
+          <a href="{% url 'articulos:detail_article' article.id %}" class="boton-articulo btn btn-success">Leer</a>
           {% endif %}
         </div>
       </div>

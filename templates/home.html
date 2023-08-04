@@ -2,77 +2,17 @@
 {% load static %}
 {% block content %}
 
-<!-- BANNER -->
-<div class="container" style="margin-top: 5rem;">
-  <div class="row align-items-center">
-    <!-- Image column -->
-    <div class="col-md-6">
-      <img src="{% static 'img/1.svg' %}" class="img-fluid rounded" alt="...">
-    </div>
-    <!-- Text column -->
-    <div class="col-md-6">
-      <h1>Bienvenidxs al blog de la red de salud Ramon Carrillo</h1>
-      <div class="text-nowrap bd-highlight" style="width: 8rem;">
-        This text should overflow the parent.
-      </div>
-      <p class="fw-lighter">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac turpis vel elit tincidunt consectetur vel eget sem. Ut id libero mauris. Duis auctor mauris sit amet justo congue, at malesuada mi posuere. Fusce a dapibus nulla. Proin malesuada tincidunt augue, in laoreet nisi lacinia et. Proin ullamcorper eleifend dui, et volutpat magna euismod eget. Sed nec velit eu mauris varius facilisis eget non felis.
-      </p>
-      <a href="{% url 'usuarios:login_user' %}" type="button" class="btn btn-outline-info btn-lg">Iniciar sesión</a>
-    </div>
-  </div>
-</div>
+<!-- Seccion del home 1 -->
+{% include 'home/secction_1.html' %}
+<!-- ############################################################ -->
 
+<!-- Seccion del home 2 -->
+{% include 'home/secction_2.html' %}
+<!-- ############################################################ -->
 
-<!-- HOME1 -->
-<hr style="height: 10px; background-color: #dc3545; border-radius: 1rem; margin: 3rem 0;">
-<div class="container">
-  <div class="row align-items-center">
-    <!-- Text column -->
-    <div class="col-md-6">
-      <h1>Registrate para iniciar sesion</h1>
-      <p class="fw-lighter">
-        Como usuario registrado, vas a poder: comentar y dar like a nuestros articulos, ademas podes sumarte y ser colaborador publicando articulos. ¡Escribinos! 
-      </p>
-    </div>
-    <!-- Image column -->
-    <div class="col-md-6">
-      <img src="{% static 'img/5.svg' %}" class="img-fluid rounded float-right" alt="...">
-    </div>
-  </div>
-</div>
-<hr style="height: 10px; background-color: #dc3545; border-radius: 1rem; margin: 3rem 0;">
-
+<!-- Seccion del home 2 -->
+{% include 'home/secction_3.html' %}
+<!-- ############################################################ -->
   
-
-<!--ARTICULOS RECIENTES -->
-<h3 class="text-decoration-underline text-center" class="font-monospace" >Articulos recientes </h3>
-  <div class="row my-4 text-center">
-    {% for article in articles %}
-    <div class="col-md-4 p-4">
-      <div class="tarjeta-articulo bg-secondary" >
-        <img src="{{article.image.url }}" class="card-img-top" />
-        <div class="tarjeta-articulo-body">
-          <h2 class="fs-5">{{ article.title }}</h2>
-          <p>Autor: <a href="{% url 'usuarios:author_detail' article.author.id %}" class="btn btn-outline-primary">{{ article.author.username }}</a></p>
-          <p>{{ article.content|striptags |truncatechars:100 }}</p>
-          {% if user.is_authenticated %}
-          <!-- Mostrar enlaces para usuarios autenticados -->
-          <div class="btn-group" role="group" >
-            <a href="{% url 'articulos:detail_article' article.id %}" class="boton-articulo btn btn-success">Leer</a>
-            {% if user.is_colaborador %}
-            <a href="{% url 'articulos:update_article' article.id %}" class="boton-articulo btn btn-warning ms-2">Editar</a>
-            <a href="{% url 'articulos:delete_article' article.id %}" class="boton-articulo btn btn-danger ms-2">Eliminar</a>
-            {% endif %}
-          </div>
-          {% else %}
-          <!-- Mostrar enlace para usuarios no autenticados -->
-          <a href="{% url 'articulos:detail_article' article.id %}" class="boton-articulo btn btn-success">Leer</a>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-</div>
 
 {% endblock %}

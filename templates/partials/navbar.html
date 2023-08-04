@@ -93,6 +93,7 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="{% url 'usuarios:update_user' %}">Ver Perfil</a></li>
                         {% if user.is_colaborador %}
+                            <li><a class="dropdown-item" href="{% url 'articulos:create_category' %}">Crear Categoria</a></li>
                             <li><a class="dropdown-item" href="{% url 'articulos:article_create' %}">Publicar Articulos</a></li>
                         {% endif %}
                         <li><a class="dropdown-item" href="{% url 'usuarios:confirm_logout_user' %}?next={{path}}">Cerrar sesión</a></li>

@@ -8,11 +8,6 @@
                 <input type="hidden" name="next" value="{{ request.path }}">
                     <button type="submit" class="btn btn-primary mx-2">
                         <i class="bi bi-hand-thumbs-up"></i>
-                        {% if user in article.likes.all %}
-                            
-                        {% else %}
-                            
-                        {% endif %}
                     </button>
                     <!-- Contador de likes -->
                     <span class="badge bg-primary">{{ article.likes.count }}</span>
@@ -24,20 +19,10 @@
                 <input type="hidden" name="next" value="{{ request.path }}">
                     <button type="submit" class="btn btn-danger mx-2">
                         <i class="bi bi-hand-thumbs-down"></i>
-                            {% if user in article.dislikes.all %}
-            
-                            {% else %}
-            
-                            {% endif %}
-                    </button>
                     <!-- Contador de dislikes -->
                     <span class="badge bg-danger">{{ article.dislikes.count }}</span>
             </form>
         </div>
     </div>
 </div>
-{% else %}
-    <div class="container text-center">
-        <p class="mb-4"><a href="{% url 'usuarios:login_user' %}" class="btn btn-secondary btn-sm">Iniciar sesión</a>Haz una Reaccion!!! </p>
-    </div>
 {% endif %}

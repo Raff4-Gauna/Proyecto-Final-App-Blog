@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CommentUpdateView, CommentDeleteView
+from .views import *
 
 app_name = 'comentarios'
 

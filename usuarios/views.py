@@ -1,4 +1,4 @@
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
@@ -6,7 +6,6 @@ from django.views.generic import CreateView, UpdateView,DetailView
 from django.contrib.auth import get_user_model, login
 from .forms import *
 from .models import User
-from django.contrib.auth.views import PasswordChangeView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 
 # vista de inicio de sesión.
 class CustomLoginView(UserPassesTestMixin, LoginView):

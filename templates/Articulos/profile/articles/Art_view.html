@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <p class="my-2">
+                <span class="text-muted">Author:</span> <a href="{% url 'usuarios:author_detail' article.author.id %}" class="text-decoration-none">{{ article.author.username }}</a>
+                <span class="text-muted">|</span> {{ article.date_published }}
+                <span class="text-muted">|</span> {{ article.category }}
+            </p>
+            <h1 class="my-4">{{ article.title }}</h1>
+            <div class="d-flex justify-content-center align-items-center">
+                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid w-75">
+            </div>
+            <div class="my-4">
+                <p class="text-justify">{{ article.content }}</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -129,6 +129,8 @@ footer{
 }
 /*################################*/
 
-
-
+/*Centrar la informacion al eliminar un articulo*/
+.vh-100 {
+  height: 68vh !important;
+}
 

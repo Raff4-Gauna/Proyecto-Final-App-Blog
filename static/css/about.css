@@ -73,16 +73,15 @@ height: auto;
 
 .card {
 margin: 10px;
-padding: 16px;
+padding: 10px;
 border-radius: 10px;
-border-color: #046716;
 box-shadow: 10px 8px 10px 5px gray;
-background-color: #d0ffdf;
 }
 
-
 .card-body{
-padding: 0.5rem;
+  text-align: center;
+  align-items: center;
+  padding: 20px;
 }
 
 
@@ -91,14 +90,14 @@ height: 70px;
 width: 100%;
 max-width: 400px;
 height: auto;
-border-radius: 10px;
+border-radius: 15px;
 object-fit: cover;
 align-items: center;
 justify-content: center;
 background-position: cover;
 border-color: none;
+padding: 5px;
 }
-
 
 
 .redes{
@@ -110,7 +109,6 @@ margin: 5px;
 .noticias{
 background-color: #d0ffdf;
 }
-
 
 .noticias img{
 width: 100%;

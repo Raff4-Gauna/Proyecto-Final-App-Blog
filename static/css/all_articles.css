@@ -1,3 +1,4 @@
+/*
 .tarjeta-articulo{
     height: 150px;
     width: 100%;
@@ -19,11 +20,13 @@
     align-items: center;
     padding: 20px;
 }
+*/
+
 
 .boton-articulo{
     display: flex;
     padding:10px;
-    border:0.1em solid #FFFFFF;
+    border:0.1em solid transparent;
     margin:0 0.3em 0.3em 0;
     border-radius:0.12em;
     box-sizing: border-box;
@@ -34,9 +37,6 @@
     text-align:center;
     transition: all 0.2s; 
     align-items: center;      
+    border-radius: 10px;
 }
 
-.boton-articulo:hover{
-    color:#000000;
-    background-color:#FFFFFF;
-}

@@ -5,7 +5,6 @@
 
 
 <!-- Mesaje de actualizacion de un articulo -->
-
 {% if messages %}
   {% for message in messages %}
     {% if message.tags == 'success' %}
@@ -22,132 +21,16 @@
 <script src="{% static 'js/timeMessageUpdateArt.js' %}"></script>
 <!-- ############################################################ -->
 
-<!-- Seccion vista del contenido de un articulo -->
- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <p class="my-2">
-                <span class="text-muted">Author:</span> <a href="{% url 'usuarios:author_detail' article.author.id %}" class="text-decoration-none">{{ article.author.username }}</a>
-                <span class="text-muted">|</span> {{ article.date_published }}
-                <span class="text-muted">|</span> {{ article.category }}
-            </p>
-            <h1 class="my-4">{{ article.title }}</h1>
-            <div class="d-flex justify-content-center align-items-center">
-                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid w-75">
-            </div>
-            <div class="my-4">
-                <p class="text-justify">{{ article.content }}</p>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Seccion de vista del contenido de un articulo -->
+{% include 'Articulos/profile/articles/Art_view.html' %}
 <!-- ############################################################ -->
 
-<!-- Botón de "like" | "Dislike" -->
-{% if user.is_authenticated %}
-<div class="container text-center mt-4">
-    <div class="btn-group" role="group" aria-label="Reacciones">
-        <div class="d-flex justify-content-center">    
-            <!-- Botón de "like" -->
-            <form method="post" action="{% url 'articulos:like' article.pk %}" class="form-inline justify-content-center">
-                {% csrf_token %}
-                <input type="hidden" name="next" value="{{ request.path }}">
-                    <button type="submit" class="btn btn-primary mx-2">
-                        <i class="bi bi-hand-thumbs-up"></i>
-                        {% if user in article.likes.all %}
-                            
-                        {% else %}
-                            
-                        {% endif %}
-                    </button>
-                    <!-- Contador de likes -->
-                    <span class="badge bg-primary">{{ article.likes.count }}</span>
-            </form>
-
-            <!-- Botón de "dislike" -->
-            <form method="post" action="{% url 'articulos:dislike' article.pk %}" class="form-inline justify-content-center">
-                {% csrf_token %}
-                <input type="hidden" name="next" value="{{ request.path }}">
-                    <button type="submit" class="btn btn-danger mx-2">
-                        <i class="bi bi-hand-thumbs-down"></i>
-                            {% if user in article.dislikes.all %}
-            
-                            {% else %}
-            
-                            {% endif %}
-                    </button>
-                    <!-- Contador de dislikes -->
-                    <span class="badge bg-danger">{{ article.dislikes.count }}</span>
-            </form>
-        </div>
-    </div>
-</div>
-{% else %}
-    <div class="container text-center">
-        <p class="mb-4"><a href="{% url 'usuarios:login_user' %}" class="btn btn-secondary btn-sm">Iniciar sesión</a>Haz una Reaccion!!! </p>
-    </div>
-{% endif %}
+<!-- Seccion de Botón de "like" | "Dislike" -->
+{% include 'Articulos/profile/articles/Art_reacction.html' %}
 <!-- ############################################################ -->
 
-<!-- Seccion para comentar sobre articulo -->
-<div class="container text-center mt-4">
-    <main class="container">
-        {% if user.is_authenticated %}
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <h3 class="fs-6" class="mb-3">Deja un comentario:</h3>
-                <div class="d-flex justify-content-center">
-                <form method="post" class="form-inline justify-content-center">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <div class="d-grid mt-4">
-                        <button type="submit" class="btn btn-primary">Comentar</button>
-                    </div>
-                </form> 
-            </div>
-        {% else %}
-        <div class="container text-center">
-            <p class="mb-4"> <a href="{% url 'usuarios:login_user' %}" class="btn btn-secondary btn-sm">Iniciar sesión</a> Haz un comentario!!!</p>
-        </div>
-        {% endif %}
-    </main>
-    <br>
-    {% if comments %}
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card bg-light p-2" style="max-height: 300px; overflow-y: auto;">    
-                <h3 class="fs-6" class="mb-3">Comentarios:</h3>
-                <ul class="list-unstyled" style="max-height: 300px; overflow-y: auto;">
-                    {% for comment in comments %}
-                    <li class="mb-3">
-                        <div class="border p-2"> <!-- Caja para resaltar el contenido -->
-                        <img src="{{ comment.author.image.url }}" alt="{{ comment.author.username }}" class="rounded-circle" width="40" height="40"></img>
-                        <strong>{{ comment.author.username }}</strong> - {{ comment.created_at|date:"M d Y H:i" }}<br>
-                        {{ comment.content }}
-                        {% if user.is_authenticated %}
-                            {% if user.is_colaborador or user == comment.author %}
-                                <!-- Mostrar el botón de editar solo para el autor del comentario -->
-                                {% if user == comment.author %}
-                                <a href="{% url 'comentarios:delete_comment' comment.id %}" class="btn btn-warning"> <i class="bi bi-pencil-fill"></i> </a>
-                                {% endif %}
-                                <!-- Mostrar el botón de eliminar para el autor del comentario y colaboradores -->
-                                <a href="{% url 'comentarios:delete_comment' comment.id %}" class="btn btn-danger"> <i class="bi bi-trash"></i> </a>
-                            {% endif %}
-                        {% endif %}
-                    </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-    </div>
-    {% else %}
-    <div class="container text-center mt-4">
-        <p class="mb-4">No hay comentarios todavía.</p>
-    </div>
-    {% endif %}
-</div>
-                        
-
+<!-- Seccion de comentar un articulo -->
+{% include 'Articulos/profile/articles/Art_comment.html' %}
 <!-- ############################################################ -->
+
 {% endblock %} 

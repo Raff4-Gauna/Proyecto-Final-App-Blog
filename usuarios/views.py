@@ -29,6 +29,13 @@ class CustomConfirmLogoutView(UserPassesTestMixin, LoginView):
     def handle_no_permission(self):
         return redirect(reverse_lazy("usuarios:login_user"))
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        next_page = self.request.GET.get('next', None)
+        context['next'] = next_page
+        return context
+    
+
 # vista de registro de usuarios.
 class CustomRegisterUserView(UserPassesTestMixin, CreateView):
     model = get_user_model()

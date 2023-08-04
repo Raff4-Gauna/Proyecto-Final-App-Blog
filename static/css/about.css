@@ -71,17 +71,20 @@ max-width: 400px;
 height: auto;
 }
 
+
 .card {
 margin: 10px;
-padding: 10px;
+padding: 16px;
 border-radius: 10px;
 box-shadow: 10px 8px 10px 5px gray;
 }
 
+
+
+/*
+
 .card-body{
-  text-align: center;
-  align-items: center;
-  padding: 20px;
+padding: 0.5rem;
 }
 
 
@@ -90,15 +93,15 @@ height: 70px;
 width: 100%;
 max-width: 400px;
 height: auto;
-border-radius: 15px;
+border-radius: 10px;
 object-fit: cover;
 align-items: center;
 justify-content: center;
 background-position: cover;
 border-color: none;
-padding: 5px;
 }
 
+*/
 
 .redes{
 display: flex;
@@ -110,9 +113,9 @@ margin: 5px;
 background-color: #d0ffdf;
 }
 
+
 .noticias img{
 width: 100%;
 max-width: 400px;
 height: auto;
 }
-

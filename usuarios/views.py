@@ -1,4 +1,4 @@
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
@@ -6,7 +6,6 @@ from django.views.generic import CreateView, UpdateView,DetailView
 from django.contrib.auth import get_user_model, login
 from .forms import *
 from .models import User
-from django.contrib.auth.views import PasswordChangeView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 
 # vista de inicio de sesión.
 class CustomLoginView(UserPassesTestMixin, LoginView):
@@ -28,6 +27,13 @@ class CustomConfirmLogoutView(UserPassesTestMixin, LoginView):
     
     def handle_no_permission(self):
         return redirect(reverse_lazy("usuarios:login_user"))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        next_page = self.request.GET.get('next', None)
+        context['next'] = next_page
+        return context
+    
 
 # vista de registro de usuarios.
 class CustomRegisterUserView(UserPassesTestMixin, CreateView):
@@ -111,3 +117,4 @@ class AuthorDetailView(DetailView):
     model = User
     template_name = "data/data_user/detail_user/author_detail.html"
     context_object_name = "author"
+

@@ -1,7 +1,10 @@
 {% extends 'layout.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
 
+
+<!-- Mesaje de actualizacion de un articulo -->
 {% if messages %}
   {% for message in messages %}
     {% if message.tags == 'success' %}
@@ -16,97 +19,34 @@
 {% endif %}
 
 <script src="{% static 'js/timeMessageUpdateArt.js' %}"></script>
+<!-- ############################################################ -->
+
+<!-- Seccion de vista del contenido de un articulo -->
+<p class="my-2 ps-5">
+  <span class="text-muted">Author:</span> <a href="{% url 'usuarios:author_detail' article.author.id %}" class="text-muted" style="p-0">{{ article.author.username }}</a>
+  <span class="text-muted">|</span> {{ article.date_published }}
+  <span class="text-muted">|</span> {{ article.category }}
+</p>
+
+<h1 class="my-4 d-flex justify-content-center align-items-center">{{ article.title }}</h1>
+
+<div class="d-flex justify-content-center ">
+  <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid w-75">
+</div>
+
+{% include "Articulos/profile/articles/Art_reacction.html" %}
+
+<!-- ############################################################ -->
 
 
+<!-- Seccion de Botón de "like" | "Dislike" -->
+<div class="my-4">
+  <p class="d-flex justify-content-center align-items-center  card bg-white" style="box-shadow: none; max-width: auto;">{{ article.content }}</p>
+</div>
+<!-- ############################################################ -->
 
-<div class="container text-center mt-4">
-    <h1>{{ article.title }}</h1>
-    <h5 class="text-muted fs-6 card-title">{{ article.category }}</h5>
-    <h2 class="my-2 h5 text-muted">{{ article.date_published }}</h2>
-    <p>Author: <a href="{% url 'usuarios:author_detail' article.author.id %}">{{ article.author.username }}</a></p>
-    <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid my-4 w-50">
-    <div class="my-4">
-        {{ article.content|safe }}
-    </div>
+<!-- Seccion de comentar un articulo -->
+{% include 'Articulos/profile/articles/Art_comment.html' %}
+<!-- ############################################################ -->
 
-    {% if user.is_authenticated %}
-    <!-- Botón de "like" -->
-    <form method="post" action="{% url 'articulos:like' article.pk %}" class="form-inline justify-content-center">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ request.path }}">
-        <button type="submit" class="btn btn-primary mx-2">
-            <i class="bi bi-hand-thumbs-up"></i>
-            {% if user in article.likes.all %}
-                
-            {% else %}
-                
-            {% endif %}
-        </button>
-        <!-- Contador de likes -->
-        <span class="badge bg-primary">{{ article.likes.count }}</span>
-    </form>
-
-    <!-- Botón de "dislike" -->
-    <form method="post" action="{% url 'articulos:dislike' article.pk %}" class="form-inline justify-content-center">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ request.path }}">
-        <button type="submit" class="btn btn-danger mx-2">
-            <i class="bi bi-hand-thumbs-down"></i>
-            {% if user in article.dislikes.all %}
-                
-            {% else %}
-                
-            {% endif %}
-        </button>
-        <!-- Contador de dislikes -->
-        <span class="badge bg-danger">{{ article.dislikes.count }}</span>
-    </form>
-{% else %}
-    <p class="mb-4">Inicia sesión para dejar un comentario.</p>
-{% endif %}
-
-
-    {% if user.is_authenticated %}
-        <div class="card bg-light p-4 mb-4">
-            <h3 class="mb-3">Deja un comentario:</h3>
-            <form method="post" class="form-inline justify-content-center">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary mx-2">Comentar</button>
-            </form>
-        </div>
-    {% else %}
-        <p class="mb-4">Inicia sesión para dejar un comentario.</p>
-    {% endif %}
-
-    {% if comments %}
-    <div class="card bg-light p-4">
-        <h3 class="mb-3">Comentarios:</h3>
-        <ul class="list-unstyled">
-            {% for comment in comments %}
-            <li class="mb-3">
-                <img src="{{ comment.author.image.url }}" alt="{{ comment.author.username }}" class="rounded-circle" width="40" height="40">
-                <strong>{{ comment.author.username }}</strong> - {{ comment.created_at|date:"M d Y H:i" }}<br>
-                {{ comment.content }}
-    
-                {% if user.is_authenticated %}
-                    {% if user.is_colaborador or user == comment.author %}
-                        <!-- Mostrar el botón de editar solo para el autor del comentario -->
-                        {% if user == comment.author %}
-                            <a href="{% url 'comentarios:update_comment' comment.id %}" class="btn btn-warning">Editar</a>
-                        {% endif %}
-    
-                        <!-- Mostrar el botón de eliminar para el autor del comentario y colaboradores -->
-                        <a href="{% url 'comentarios:delete_comment' comment.id %}" class="btn btn-danger">Eliminar</a>
-                    {% endif %}
-                {% endif %}
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% else %}
-    <p class="mb-4">No hay comentarios todavía.</p>
-    {% endif %}
-    
-{% endblock %}
-
+{% endblock %} 

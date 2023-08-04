@@ -1,4 +1,3 @@
-from .views import CustomPasswordResetView, CustomPasswordResetDoneView, CustomPasswordResetConfirmView, CustomPasswordResetCompleteView
 from django.urls import path
 from .views import *
 from . import views

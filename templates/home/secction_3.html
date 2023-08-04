@@ -11,7 +11,7 @@
           <p>{{ article.content|striptags |truncatechars:100 }}</p>
           {% if user.is_authenticated %}    
           <!-- Mostrar enlaces para usuarios autenticados -->
-          <div class="btn-group" role="group" >
+          <div class="btn-group" role="group"  aria-label="Basic mixed styles example">
             <a href="{% url 'articulos:detail_article' article.id %}" class="btn btn-success">Leer</a>
             {% if user.is_colaborador %}
             <a href="{% url 'articulos:update_article' article.id %}" class="btn btn-warning ms-2">Editar</a>

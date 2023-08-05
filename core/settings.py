@@ -90,20 +90,20 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # settings.py
 
 # Configuración para el backend de correo
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Configuración para el servidor de correo (SMTP)
 # Aquí debes proporcionar los detalles de tu servidor de correo saliente (SMTP)
 # En este ejemplo, se muestra cómo configurarlo para Gmail. Reemplaza con tus propios valores.
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 8000
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'test@gmail.com'
-EMAIL_HOST_PASSWORD = 'django123'
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_PORT = 8000
+#EMAIL_USE_TLS = True
+#EMAIL_HOST_USER = 'test@gmail.com'
+#EMAIL_HOST_PASSWORD = 'django123'
 
 # Configuración para mostrar correos en consola durante el desarrollo
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#if DEBUG:
+#    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 ##############################################################################
@@ -168,4 +168,3 @@ LOGIN_URL = '/signin/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
